@@ -146,7 +146,7 @@
         <details class="project reveal">
           <summary>
             <div class="project-top">
-              <h3>Time-Aware Modeling of User Event Sequences</h3>
+              <h3>Time-Aware Modeling of User Action Logs</h3>
             </div>
             <p class="meta">Functional regression &middot; adaptive group LASSO &middot; interpretable prediction</p>
             <p class="lede">Finds which actions matter, and whether their effect depends on when they happen.</p>
@@ -154,9 +154,9 @@
           </summary>
           <div class="project-body">
             <p>
-            Developed an interpretable model for timestamped event logs that tests, for each action, whether its
+            Developed an interpretable model for process data (timestamped action logs) that tests, for each action, whether its
             effect on the outcome is absent, constant, or depends on when it happens. On 19,089 events from 2,668
-            users, it raised cross-validated accuracy from 93.5% to 96.1% and halved log loss (0.237 to 0.118)
+            test-takers in OECD PISA 2012, it raised cross-validated accuracy from 93.5% to 96.1% and halved log loss (0.237 to 0.118)
             compared with a count-feature baseline, winning on all 10 folds. The gain comes from actions whose
             effect flips sign with timing, such as early exploration versus a final choice.
             <a href="#perspective">See the interactive curve above.</a>
@@ -167,19 +167,20 @@
         <details class="project reveal">
           <summary>
             <div class="project-top">
-              <h3>Latent User-Segment and Hidden-State Modeling</h3>
+              <h3>Latent Skill and Hidden-State Modeling of User Behavior</h3>
             </div>
-            <p class="meta">Hidden Markov models &middot; EM &middot; sparse model selection &middot; HPC</p>
-            <p class="lede">Recovers the hidden traits and states behind how users move through a multi-app task.</p>
+            <p class="meta">Structured latent-variable models &middot; hidden Markov models &middot; sparse skill maps</p>
+            <p class="lede">Separates stable skills from moment-to-moment states, and shows which skill drives which behavior.</p>
             <span class="more" aria-hidden="true">Details</span>
           </summary>
           <div class="project-body">
             <p>
-            Designed sparse latent-variable sequence models that combine persistent binary user traits with
-            evolving hidden states, identifying which traits drive action choice, interface choice, and state
-            transitions for 1,340 users of a multi-app task. Implemented a custom forward&ndash;backward EM in
-            Python with model selection over up to 64 structures, ran 580+ HPC jobs, and sped up the EM core
-            by up to 3.7&times; with NumPy/Numba while keeping results bitwise identical.
+            Designed a structured latent-variable framework that separates stable skills from evolving
+            problem-solving states, generating each step as hidden state &rarr; interface choice &rarr; action
+            (a skill-driven hidden Markov model). Sparse skill-to-behavior maps for state transitions, interface
+            choice, and action choice show which skill changes which behavior. Implemented estimation from scratch
+            in Python (forward&ndash;backward EM, sparse-group LASSO, maximum-likelihood refit) and searched 45
+            candidate dependency structures across 580+ HPC jobs on 1,340 users of an email-and-spreadsheet task.
             </p>
           </div>
         </details>
