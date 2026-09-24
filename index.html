@@ -55,16 +55,23 @@
           </ul>
         </div>
 
-        <figure class="live-panel reveal" aria-label="Animated demo of a real-time early-warning system">
+        <figure class="beta-figure reveal">
           <div class="live-head">
             <span class="live-dot" aria-hidden="true"></span>
-            <span class="live-title">Live early-warning demo</span>
-            <span class="live-budget">false-alarm budget &le; 5%</span>
+            <span class="live-title">Interactive: drag the marker</span>
+            <span class="live-budget">OECD PISA 2012</span>
           </div>
-          <div class="token-row" aria-hidden="true"></div>
-          <canvas class="risk-canvas" aria-hidden="true"></canvas>
-          <figcaption class="live-status" aria-live="polite">Watching the sequence&hellip;</figcaption>
-          <p class="live-note">Illustration based on the PISA ticket-machine task. Rule: alert after 2 high-risk steps within any 4.</p>
+          <p class="beta-intro">
+            Clicking the <em>daily</em> ticket can be a smart move or a mistake. It depends on <strong>when</strong>
+            it happens. The curve is its estimated effect on the odds of answering correctly.
+          </p>
+          <svg class="beta-svg" viewBox="0 0 560 330" role="img" aria-label="Estimated time-varying effect of the daily action, with a draggable marker"></svg>
+          <label class="beta-slider-label">
+            <span class="sr-only">Relative time of the click</span>
+            <input class="beta-slider" type="range" min="0" max="100" value="52">
+          </label>
+          <figcaption class="beta-readout" aria-live="polite"></figcaption>
+          <p class="live-note">Estimated from 19,089 events by my scalar-on-process model; band is a 95% bootstrap interval.</p>
         </figure>
       </section>
 
@@ -72,21 +79,25 @@
         <div class="perspective-grid">
           <div class="perspective-copy reveal">
             <p>
-              In the PISA ticket-machine task, students must find the cheapest ticket. Choosing the
-              <em>daily</em> ticket can be a smart move or a mistake. It depends only on <strong>when</strong> it happens.
+              Can we tell that a user is heading toward failure <strong>while they are still working</strong>,
+              and step in early without bothering the users who would have succeeded anyway?
             </p>
             <p>
-              The curve is the effect of clicking <em>daily</em> on the odds of answering correctly, estimated from
-              19,089 events by my scalar-on-process model. <strong>Drag the marker</strong> along the timeline.
+              The demo replays three users in the same ticket-machine task. At each step a sequence model scores
+              the risk of failing, and an alert fires only after two high-risk steps within any four, a rule
+              calibrated so that false alarms stay under 5%.
             </p>
           </div>
-          <figure class="beta-figure reveal">
-            <svg class="beta-svg" viewBox="0 0 560 330" role="img" aria-label="Estimated time-varying effect of the daily action, with a draggable marker"></svg>
-            <label class="beta-slider-label">
-              <span class="sr-only">Relative time of the click</span>
-              <input class="beta-slider" type="range" min="0" max="100" value="52">
-            </label>
-            <figcaption class="beta-readout" aria-live="polite"></figcaption>
+          <figure class="live-panel reveal" aria-label="Animated demo of a real-time early-warning system">
+            <div class="live-head">
+              <span class="live-dot" aria-hidden="true"></span>
+              <span class="live-title">Live early-warning demo</span>
+              <span class="live-budget">false-alarm budget &le; 5%</span>
+            </div>
+            <div class="token-row" aria-hidden="true"></div>
+            <canvas class="risk-canvas" aria-hidden="true"></canvas>
+            <figcaption class="live-status" aria-live="polite">Watching the sequence&hellip;</figcaption>
+            <p class="live-note">Illustration based on the PISA ticket-machine task.</p>
           </figure>
         </div>
       </section>
@@ -138,7 +149,7 @@
             test-takers in OECD PISA 2012, it raised cross-validated accuracy from 93.5% to 96.1% and halved log loss (0.237 to 0.118)
             compared with a count-feature baseline, winning on all 10 folds. The gain comes from actions whose
             effect flips sign with timing, such as early exploration versus a final choice.
-            <a href="#perspective">See the interactive curve above.</a>
+            <a href="#top">See the interactive curve at the top.</a>
             </p>
           </div>
         </details>

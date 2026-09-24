@@ -472,6 +472,17 @@ h3 {
   box-shadow: var(--shadow);
 }
 
+.beta-intro {
+  margin: 12px 0 6px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.beta-intro strong,
+.beta-intro em {
+  color: var(--ink);
+}
+
 .beta-svg {
   display: block;
   width: 100%;
@@ -484,7 +495,7 @@ h3 {
 .beta-svg text {
   font-family: "Inter", "Segoe UI", Arial, sans-serif;
   fill: var(--muted);
-  font-size: 12px;
+  font-size: 15px;
 }
 
 .beta-slider-label {
