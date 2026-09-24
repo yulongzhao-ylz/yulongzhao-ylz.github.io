@@ -102,12 +102,12 @@
             <p>Interpretable models that show which actions in a process matter for the outcome, and whether that depends on when they happen.</p>
           </div>
           <div class="reveal">
-            <h3>Real-Time Monitoring of Process Data</h3>
-            <p>Risk scoring from partial action sequences as a task unfolds, with alert rules calibrated to a preset false-alarm budget.</p>
-          </div>
-          <div class="reveal">
             <h3>Latent Structure in Process Data</h3>
             <p>Sparse latent-variable and hidden Markov models that recover the skills and problem-solving states behind observed actions.</p>
+          </div>
+          <div class="reveal">
+            <h3>Real-Time Monitoring of Process Data</h3>
+            <p>Risk scoring from partial action sequences as a task unfolds, with alert rules calibrated to a preset false-alarm budget.</p>
           </div>
           <div class="reveal">
             <h3>Beyond Process Data: Scientific Time Series</h3>
@@ -121,27 +121,6 @@
           <p class="eyebrow">Selected Work</p>
           <h2>Selected Projects</h2>
         </div>
-
-        <details class="project reveal">
-          <summary>
-            <div class="project-top">
-              <h3>Real-Time Early Warning with a Controlled False-Alarm Rate</h3>
-            </div>
-            <p class="meta">Streaming risk scoring &middot; sequence models &middot; threshold calibration</p>
-            <p class="lede">Flags users heading toward failure while they are still working, without crying wolf.</p>
-            <span class="more" aria-hidden="true">Details</span>
-          </summary>
-          <div class="project-body">
-            <p>
-            Built a real-time risk-scoring system that reads each user's partial action sequence in OECD PISA
-            problem-solving tasks and flags users heading toward failure while they are still working. Alert
-            thresholds are calibrated on the rule actually deployed, capping false alarms on users who would
-            succeed at &le;5%. Compared with GRU, Transformer, and leakage-free logistic baselines, the best
-            temporal CNN caught 98.9% of failing users at precision &ge;0.98, with false alarms at or below 4%
-            on all three tasks.
-            </p>
-          </div>
-        </details>
 
         <details class="project reveal">
           <summary>
@@ -181,6 +160,27 @@
             in advance, the framework learns from data alone which skills drive which actions, interface choices,
             and state transitions. On 1,340 users of an email-and-spreadsheet task, it discovered skills, states,
             and skill&ndash;behavior links that are substantively interpretable without any manual labeling.
+            </p>
+          </div>
+        </details>
+
+        <details class="project reveal">
+          <summary>
+            <div class="project-top">
+              <h3>Real-Time Early Warning with a Controlled False-Alarm Rate</h3>
+            </div>
+            <p class="meta">Streaming risk scoring &middot; sequence models &middot; threshold calibration</p>
+            <p class="lede">Flags users heading toward failure while they are still working, without crying wolf.</p>
+            <span class="more" aria-hidden="true">Details</span>
+          </summary>
+          <div class="project-body">
+            <p>
+            Built a real-time risk-scoring system that reads each user's partial action sequence in OECD PISA
+            problem-solving tasks and flags users heading toward failure while they are still working. Alert
+            thresholds are calibrated on the rule actually deployed, capping false alarms on users who would
+            succeed at &le;5%. Compared with GRU, Transformer, and leakage-free logistic baselines, the best
+            temporal CNN caught 98.9% of failing users at precision &ge;0.98, with false alarms at or below 4%
+            on all three tasks.
             </p>
           </div>
         </details>
