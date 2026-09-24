@@ -111,7 +111,7 @@
           </div>
           <div class="reveal">
             <h3>Beyond Process Data: Scientific Time Series</h3>
-            <p>Leakage-free forecasting and regime-shift detection for environmental records, with surrogate and simulation-based checks.</p>
+            <p>Leakage-free forecasting and regime-shift detection for environmental records, with robustness checks.</p>
           </div>
         </div>
       </section>
@@ -133,12 +133,12 @@
           </summary>
           <div class="project-body">
             <p>
-            Built a streaming risk-scoring system that reads each user's partial action sequence and decides
-            when to flag users heading toward failure, with alert thresholds calibrated on the deployed trigger
-            rule so false alarms stay within a preset budget (&le;5%). Across about 370 configurations (GRU,
-            GRU with attention, temporal CNN, causal Transformer, and leakage-free logistic baselines) on three
-            interactive tasks, the best temporal-CNN model caught 98.9% of failing users at precision &ge;0.98,
-            with false alarms at or below 4% on every task.
+            Built a real-time risk-scoring system that reads each user's partial action sequence in OECD PISA
+            problem-solving tasks and flags users heading toward failure while they are still working. Alert
+            thresholds are calibrated on the rule actually deployed, capping false alarms on users who would
+            succeed at &le;5%. Compared with GRU, Transformer, and leakage-free logistic baselines, the best
+            temporal CNN caught 98.9% of failing users at precision &ge;0.98, with false alarms at or below 4%
+            on all three tasks.
             </p>
           </div>
         </details>
@@ -177,10 +177,10 @@
             <p>
             Designed a structured latent-variable framework that separates stable skills from evolving
             problem-solving states, generating each step as hidden state &rarr; interface choice &rarr; action
-            (a skill-driven hidden Markov model). Sparse skill-to-behavior maps for state transitions, interface
-            choice, and action choice show which skill changes which behavior. Implemented estimation from scratch
-            in Python (forward&ndash;backward EM, sparse-group LASSO, maximum-likelihood refit) and searched 45
-            candidate dependency structures across 580+ HPC jobs on 1,340 users of an email-and-spreadsheet task.
+            (a skill-driven hidden Markov model). Unlike prior models that fix states or skill&ndash;behavior links
+            in advance, the framework learns from data alone which skills drive which actions, interface choices,
+            and state transitions. On 1,340 users of an email-and-spreadsheet task, it discovered skills, states,
+            and skill&ndash;behavior links that are substantively interpretable without any manual labeling.
             </p>
           </div>
         </details>
@@ -198,9 +198,9 @@
             <p>
             Built a walk-forward forecasting pipeline (RBF-SVR, time-ordered tuning, no look-ahead) that beat
             the historical-mean baseline in 18 of 18 settings, with 38% lower mean squared error on average.
-            Developed a regime-shift detector across 28 environmental series pairs, tested against 4,999
-            autocorrelation-preserving surrogates with Holm correction, and stress-tested findings under 49
-            data perturbations.
+            Developed a regime-shift detector for multivariate environmental series and identified statistically
+            significant shifts after multiple-testing correction, the strongest aligning with the end-Triassic
+            mass extinction (about 201 million years ago).
             </p>
           </div>
         </details>
