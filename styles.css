@@ -231,8 +231,7 @@ h3 {
 
 .section-band,
 .projects,
-.contact,
-.kpis {
+.contact {
   padding: 56px 0;
   border-top: 1px solid var(--line);
 }
@@ -446,44 +445,6 @@ h3 {
   font-size: 0.76rem;
 }
 
-/* KPIs */
-
-.kpis {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.kpi {
-  padding: 20px 20px 18px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--panel);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.kpi:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow);
-}
-
-.kpi strong {
-  display: block;
-  margin-bottom: 6px;
-  color: var(--blue);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-
-.kpi span {
-  display: block;
-  color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
 /* Same click, different moment */
 
 .perspective-grid {
@@ -500,17 +461,6 @@ h3 {
 .perspective-copy strong,
 .perspective-copy em {
   color: var(--ink);
-}
-
-blockquote {
-  margin: 22px 0 0;
-  padding: 4px 0 4px 18px;
-  border-left: 3px solid var(--amber);
-  color: var(--ink);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.14rem;
-  font-style: italic;
-  line-height: 1.5;
 }
 
 .beta-figure {
@@ -642,17 +592,6 @@ blockquote {
 .project-top h3 {
   margin-bottom: 6px;
   font-size: 1.1rem;
-}
-
-.chip {
-  flex: none;
-  padding: 3px 10px;
-  border-radius: 999px;
-  background: var(--blue-soft);
-  color: var(--blue);
-  font-size: 0.8rem;
-  font-weight: 700;
-  white-space: nowrap;
 }
 
 .meta {
@@ -799,10 +738,6 @@ blockquote {
   .perspective-grid {
     grid-template-columns: 1fr;
   }
-
-  .kpis {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 /* Phone */
@@ -893,25 +828,12 @@ blockquote {
 
   .section-band,
   .projects,
-  .contact,
-  .kpis {
+  .contact {
     padding: 38px 0;
   }
 
   .section-heading {
     margin-bottom: 22px;
-  }
-
-  .kpis {
-    gap: 10px;
-  }
-
-  .kpi {
-    padding: 14px 14px 12px;
-  }
-
-  .kpi span {
-    font-size: 0.8rem;
   }
 
   .interest-list {
@@ -935,11 +857,6 @@ blockquote {
 
   .project-top h3 {
     font-size: 1rem;
-  }
-
-  .chip {
-    order: -1;
-    margin-bottom: 4px;
   }
 
   .lede {
@@ -966,10 +883,6 @@ blockquote {
 
   .beta-svg .y-label {
     display: none;
-  }
-
-  blockquote {
-    font-size: 1.04rem;
   }
 
   .contact {
