@@ -136,19 +136,20 @@
         <details class="project reveal">
           <summary>
             <div class="project-top">
-              <h3>Time-Aware Modeling of User Action Logs</h3>
+              <h3>Predictive Modeling of Sequential User Behavior</h3>
             </div>
             <p class="meta">Interpretable prediction &middot; time-varying effects &middot; NSF #2310664</p>
-            <p class="lede">Finds which actions matter, and whether their effect depends on when they happen.</p>
+            <p class="lede">Captures both which actions users take and when they take them.</p>
             <span class="more" aria-hidden="true">Details</span>
           </summary>
           <div class="project-body">
             <p>
-            Developed an interpretable model for process data (timestamped action logs) that tests, for each action, whether its
-            effect on the outcome is absent, constant, or depends on when it happens. On 19,089 events from 2,668
-            test-takers in OECD PISA 2012, it raised cross-validated accuracy from 93.5% to 96.1% and halved log loss (0.237 to 0.118)
-            compared with a count-feature baseline, winning on all 10 folds. The gain comes from actions whose
-            effect flips sign with timing, such as early exploration versus a final choice.
+            Built an interpretable predictive model for timestamped user-event sequences that captures both which
+            actions users take and when they take them, including time-varying behavioral effects missed by
+            count-based features. Improved 10-fold cross-validated accuracy from 93.5% to 96.1% and cut log loss
+            by 50% (0.237 to 0.118) on 19,089 events from 2,668 users, outperforming the count-feature baseline on
+            every fold. Identified timing-sensitive behavioral signals whose predictive effect reverses across the
+            task, revealing information fundamentally lost by conventional aggregate features.
             <a href="#top">See the interactive curve at the top.</a>
             </p>
           </div>
@@ -157,20 +158,20 @@
         <details class="project reveal">
           <summary>
             <div class="project-top">
-              <h3>Latent Skill and Hidden-State Modeling of User Behavior</h3>
+              <h3>Unsupervised Skill and State Discovery from User Sequences</h3>
             </div>
             <p class="meta">Structured latent-variable models &middot; hidden Markov models &middot; sparse skill maps</p>
-            <p class="lede">Separates stable skills from moment-to-moment states, and shows which skill drives which behavior.</p>
+            <p class="lede">Learns stable skills and evolving states, and which skill drives which behavior, with no labels.</p>
             <span class="more" aria-hidden="true">Details</span>
           </summary>
           <div class="project-body">
             <p>
-            Designed a structured latent-variable framework that separates stable skills from evolving
-            problem-solving states, generating each step as hidden state &rarr; interface choice &rarr; action
-            (a skill-driven hidden Markov model). Unlike prior models that fix states or skill&ndash;behavior links
-            in advance, the framework learns from data alone which skills drive which actions, interface choices,
-            and state transitions. On 1,340 users of an email-and-spreadsheet task, it discovered skills, states,
-            and skill&ndash;behavior links that are substantively interpretable without any manual labeling.
+            Designed a structured latent-variable model that jointly learns stable user skills and evolving
+            behavioral states from multistep interaction sequences. Developed sparse skill-to-behavior mappings that
+            learn which latent skills drive actions, interface choices, and state transitions, instead of requiring
+            those relationships to be specified a priori. Applied the framework to 1,340 users in a multi-interface
+            problem-solving task, recovering interpretable skills, behavioral states, and skill&ndash;action
+            relationships without manual state labeling.
             </p>
           </div>
         </details>
@@ -180,19 +181,18 @@
             <div class="project-top">
               <h3>Real-Time Early Warning with a Controlled False-Alarm Rate</h3>
             </div>
-            <p class="meta">Streaming risk scoring &middot; sequence models &middot; threshold calibration</p>
+            <p class="meta">Online risk scoring &middot; sequence models &middot; threshold calibration</p>
             <p class="lede">Flags users heading toward failure while they are still working, without crying wolf.</p>
             <span class="more" aria-hidden="true">Details</span>
           </summary>
           <div class="project-body">
             <p>
-            Built a real-time risk-scoring system that turns each user's partial action sequence in OECD PISA
-            problem-solving tasks into an evolving probability of success, flagging users heading toward failure
-            while they are still working. The work was developed concurrently with a 2026 JASA paper
-            (Yuan &amp; Fang) built on the same core idea, machine-learned success-probability curves; this project
-            goes further by deciding when to alert, with thresholds calibrated to cap false alarms at &le;5%. Compared with GRU, Transformer, and leakage-free logistic baselines, the best
-            temporal CNN caught 98.9% of failing users at precision &ge;0.98, with false alarms at or below 4%
-            on all three tasks.
+            Built an online early-warning framework that continuously updates failure risk from partial
+            user-action sequences, enabling intervention before task completion. Designed and calibrated decision
+            thresholds to maximize early detection while explicitly controlling the false-alarm rate at &le;5%.
+            Benchmarked GRU, temporal CNN, Transformer, and leakage-safe logistic baselines; the best temporal CNN
+            detected 98.9% of failing users at precision &ge;0.98 while keeping false alarms below 4% across all
+            three tasks, compared with 85.6% detection for GRU.
             </p>
           </div>
         </details>
@@ -200,20 +200,19 @@
         <details class="project reveal">
           <summary>
             <div class="project-top">
-              <h3>Time-Series Forecasting and Regime-Shift Detection</h3>
+              <h3>Multivariate Time-Series Forecasting &amp; Regime-Shift Detection</h3>
             </div>
-            <p class="meta">Walk-forward forecasting &middot; recurrence plots &middot; IMSI cluster, NSF #1929348</p>
+            <p class="meta">Walk-forward forecasting &middot; recurrence-based detection &middot; IMSI cluster, NSF #1929348</p>
             <p class="lede">Forecasts biological change from environmental records and tests where regimes shift.</p>
             <span class="more" aria-hidden="true">Details</span>
           </summary>
           <div class="project-body">
             <p>
-            Built a walk-forward forecasting pipeline (RBF-SVR, time-ordered tuning, no look-ahead) that beat
-            the historical-mean baseline in 18 of 18 settings, with 38% lower mean squared error on average.
-            Developed a regime-shift detector based on recurrence plots of multivariate environmental series and
-            identified statistically
-            significant shifts after multiple-testing correction, the strongest aligning with the end-Triassic
-            mass extinction (about 201 million years ago).
+            Built a leakage-free walk-forward forecasting pipeline using PCA and RBF-SVR, reducing MSE by 38%
+            versus the historical-mean baseline and outperforming it in all 18 evaluation settings. Developed a
+            multivariate regime-shift detection pipeline using recurrence-based features and multiple-testing
+            correction, identifying statistically significant environmental shifts and separating robust signals
+            from preprocessing-sensitive findings.
             </p>
           </div>
         </details>
