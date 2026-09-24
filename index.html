@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Yulong Zhao</title>
     <meta name="description" content="Yulong Zhao, Statistics PhD student at the University of Arizona. Interpretable and deployable models for user event sequences: time-aware regression, real-time risk scoring, latent-state models, and time-series forecasting.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a4778'/%3E%3Ctext x='16' y='21.5' font-family='Georgia,serif' font-size='15' font-weight='700' fill='%23f7f6f1' text-anchor='middle'%3EYZ%3C/text%3E%3C/svg%3E">
+    <script>
+      document.documentElement.className += " js";
+      try {
+        var saved = localStorage.getItem("theme");
+        if (saved === "dark" || saved === "light") document.documentElement.setAttribute("data-theme", saved);
+      } catch (e) {}
+    </script>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -16,14 +24,18 @@
         <a href="#publications">Publications</a>
         <a href="#contact">Contact</a>
       </nav>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+      </button>
     </header>
 
     <main id="top">
       <section class="intro">
-        <div class="intro-copy">
-          <p class="eyebrow">University of Arizona</p>
+        <div class="intro-copy reveal">
+          <p class="eyebrow">University of Arizona &middot; Statistics PhD</p>
           <h1>Yulong Zhao</h1>
-          <p class="role">Statistics PhD Student</p>
+          <p class="role">Models for how people act, one event at a time.</p>
           <p class="summary">
             I build interpretable and deployable models for user event sequences: which actions
             matter and when, how to flag users at risk in real time without too many false alarms,
@@ -31,53 +43,84 @@
             and regime-shift detection for scientific data. Advised by Prof. Xueying Tang.
           </p>
           <div class="actions" aria-label="Profile links">
-            <a class="button" href="assets/Yulong_Zhao_CV_2026.pdf">CV</a>
+            <a class="button primary" href="assets/Yulong_Zhao_CV_2026.pdf">CV</a>
             <a class="button" href="mailto:ylzhao@arizona.edu">Email</a>
             <a class="button" href="https://www.linkedin.com/in/yulong-zhao-21a35b23b/">LinkedIn</a>
           </div>
+          <ul class="facts" aria-label="Profile facts">
+            <li><span>Focus</span>Event sequences &middot; risk scoring</li>
+            <li><span>PhD</span>Expected May 2028</li>
+            <li><span>Based in</span>Tucson, Arizona</li>
+          </ul>
         </div>
 
-        <aside class="profile-card" aria-label="Profile summary">
-          <dl>
-            <div>
-              <dt>Current Focus</dt>
-              <dd>Event-sequence modeling, real-time risk scoring, interpretable machine learning</dd>
-            </div>
-            <div>
-              <dt>Methods</dt>
-              <dd>Sequence models (GRU, TCN, Transformer), sparse regression, latent-state models, calibration</dd>
-            </div>
-            <div>
-              <dt>Education</dt>
-              <dd>PhD Statistics, expected May 2028</dd>
-            </div>
-            <div>
-              <dt>Location</dt>
-              <dd>Tucson, Arizona</dd>
-            </div>
-          </dl>
-        </aside>
+        <figure class="live-panel reveal" aria-label="Animated demo of a real-time early-warning system">
+          <div class="live-head">
+            <span class="live-dot" aria-hidden="true"></span>
+            <span class="live-title">Live early-warning demo</span>
+            <span class="live-budget">false-alarm budget &le; 5%</span>
+          </div>
+          <div class="token-row" aria-hidden="true"></div>
+          <canvas class="risk-canvas" aria-hidden="true"></canvas>
+          <figcaption class="live-status" aria-live="polite">Watching the sequence&hellip;</figcaption>
+          <p class="live-note">Illustration based on the PISA ticket-machine task. Rule: alert after 2 high-risk steps within any 4.</p>
+        </figure>
+      </section>
+
+      <section class="kpis" aria-label="Key results">
+        <div class="kpi reveal"><strong data-count="98.9" data-decimals="1" data-suffix="%">98.9%</strong><span>of failing users caught in real time, false alarms &le; 4%</span></div>
+        <div class="kpi reveal"><strong data-count="96.1" data-decimals="1" data-suffix="%">96.1%</strong><span>accuracy from action timing, log loss halved</span></div>
+        <div class="kpi reveal"><strong data-count="3.7" data-decimals="1" data-suffix="&times;">3.7&times;</strong><span>faster EM, bitwise-identical results</span></div>
+        <div class="kpi reveal"><strong data-count="18" data-decimals="0" data-suffix="/18">18/18</strong><span>forecast settings beat the baseline</span></div>
+      </section>
+
+      <section id="perspective" class="section-band perspective">
+        <div class="section-heading reveal">
+          <p class="eyebrow">A research idea in one picture</p>
+          <h2>Same click, different moment</h2>
+        </div>
+        <div class="perspective-grid">
+          <div class="perspective-copy reveal">
+            <p>
+              In the PISA ticket-machine task, students must find the cheapest ticket. Choosing the
+              <em>daily</em> ticket can be a smart move or a mistake. It depends only on <strong>when</strong> it happens.
+            </p>
+            <p>
+              The curve is the effect of clicking <em>daily</em> on the odds of answering correctly, estimated from
+              19,089 events by my scalar-on-process model. <strong>Drag the marker</strong> along the timeline.
+            </p>
+            <blockquote>Counting clicks shows what you did.<br>Timing shows how you thought.</blockquote>
+          </div>
+          <figure class="beta-figure reveal">
+            <svg class="beta-svg" viewBox="0 0 560 330" role="img" aria-label="Estimated time-varying effect of the daily action, with a draggable marker"></svg>
+            <label class="beta-slider-label">
+              <span class="sr-only">Relative time of the click</span>
+              <input class="beta-slider" type="range" min="0" max="100" value="52">
+            </label>
+            <figcaption class="beta-readout" aria-live="polite"></figcaption>
+          </figure>
+        </div>
       </section>
 
       <section id="research" class="section-band">
-        <div class="section-heading">
+        <div class="section-heading reveal">
           <p class="eyebrow">Research Interests</p>
           <h2>Research Areas and Methods</h2>
         </div>
         <div class="interest-list">
-          <div>
+          <div class="reveal">
             <h3>Modeling User Event Sequences</h3>
             <p>Models for timestamped event logs and action sequences that show which actions matter, and when.</p>
           </div>
-          <div>
+          <div class="reveal">
             <h3>Real-Time Risk Scoring and Alerting</h3>
             <p>Streaming prediction from partial sequences, with alert rules calibrated to a preset false-alarm budget.</p>
           </div>
-          <div>
+          <div class="reveal">
             <h3>Latent Traits and Hidden States</h3>
             <p>Sparse latent-variable and hidden Markov models that recover the user traits and states behind observed behavior.</p>
           </div>
-          <div>
+          <div class="reveal">
             <h3>Forecasting and Robust Validation</h3>
             <p>Leakage-free time-series forecasting, regime-shift detection, bootstrap, and simulation-based checks.</p>
           </div>
@@ -85,17 +128,22 @@
       </section>
 
       <section id="projects" class="projects">
-        <div class="section-heading">
+        <div class="section-heading reveal">
           <p class="eyebrow">Selected Work</p>
           <h2>Selected Projects</h2>
         </div>
 
-        <article class="project-row">
-          <div class="project-card project-summary">
-            <h3>Real-Time Early Warning with a Controlled False-Alarm Rate</h3>
-            <p class="meta">Streaming risk scoring, sequence models, threshold calibration</p>
-          </div>
-          <div class="project-card project-detail">
+        <details class="project reveal">
+          <summary>
+            <div class="project-top">
+              <h3>Real-Time Early Warning with a Controlled False-Alarm Rate</h3>
+              <span class="chip">98.9% caught</span>
+            </div>
+            <p class="meta">Streaming risk scoring &middot; sequence models &middot; threshold calibration</p>
+            <p class="lede">Flags users heading toward failure while they are still working, without crying wolf.</p>
+            <span class="more" aria-hidden="true">Details</span>
+          </summary>
+          <div class="project-body">
             <p>
             Built a streaming risk-scoring system that reads each user's partial action sequence and decides
             when to flag users heading toward failure, with alert thresholds calibrated on the deployed trigger
@@ -105,30 +153,41 @@
             with false alarms at or below 4% on every task.
             </p>
           </div>
-        </article>
+        </details>
 
-        <article class="project-row">
-          <div class="project-card project-summary">
-            <h3>Time-Aware Modeling of User Event Sequences</h3>
-            <p class="meta">Functional regression, adaptive group LASSO, interpretable prediction</p>
-          </div>
-          <div class="project-card project-detail">
+        <details class="project reveal">
+          <summary>
+            <div class="project-top">
+              <h3>Time-Aware Modeling of User Event Sequences</h3>
+              <span class="chip">96.1% accuracy</span>
+            </div>
+            <p class="meta">Functional regression &middot; adaptive group LASSO &middot; interpretable prediction</p>
+            <p class="lede">Finds which actions matter, and whether their effect depends on when they happen.</p>
+            <span class="more" aria-hidden="true">Details</span>
+          </summary>
+          <div class="project-body">
             <p>
             Developed an interpretable model for timestamped event logs that tests, for each action, whether its
             effect on the outcome is absent, constant, or depends on when it happens. On 19,089 events from 2,668
             users, it raised cross-validated accuracy from 93.5% to 96.1% and halved log loss (0.237 to 0.118)
             compared with a count-feature baseline, winning on all 10 folds. The gain comes from actions whose
             effect flips sign with timing, such as early exploration versus a final choice.
+            <a href="#perspective">See the interactive curve above.</a>
             </p>
           </div>
-        </article>
+        </details>
 
-        <article class="project-row">
-          <div class="project-card project-summary">
-            <h3>Latent User-Segment and Hidden-State Modeling</h3>
-            <p class="meta">Hidden Markov models, EM, sparse model selection, HPC</p>
-          </div>
-          <div class="project-card project-detail">
+        <details class="project reveal">
+          <summary>
+            <div class="project-top">
+              <h3>Latent User-Segment and Hidden-State Modeling</h3>
+              <span class="chip">3.7&times; faster</span>
+            </div>
+            <p class="meta">Hidden Markov models &middot; EM &middot; sparse model selection &middot; HPC</p>
+            <p class="lede">Recovers the hidden traits and states behind how users move through a multi-app task.</p>
+            <span class="more" aria-hidden="true">Details</span>
+          </summary>
+          <div class="project-body">
             <p>
             Designed sparse latent-variable sequence models that combine persistent binary user traits with
             evolving hidden states, identifying which traits drive action choice, interface choice, and state
@@ -137,14 +196,19 @@
             by up to 3.7&times; with NumPy/Numba while keeping results bitwise identical.
             </p>
           </div>
-        </article>
+        </details>
 
-        <article class="project-row">
-          <div class="project-card project-summary">
-            <h3>Time-Series Forecasting and Regime-Shift Detection</h3>
-            <p class="meta">Walk-forward forecasting, surrogate testing, IMSI interdisciplinary cluster</p>
-          </div>
-          <div class="project-card project-detail">
+        <details class="project reveal">
+          <summary>
+            <div class="project-top">
+              <h3>Time-Series Forecasting and Regime-Shift Detection</h3>
+              <span class="chip">18/18 wins</span>
+            </div>
+            <p class="meta">Walk-forward forecasting &middot; surrogate testing &middot; IMSI interdisciplinary cluster</p>
+            <p class="lede">Forecasts biological change from environmental records and tests where regimes shift.</p>
+            <span class="more" aria-hidden="true">Details</span>
+          </summary>
+          <div class="project-body">
             <p>
             Built a walk-forward forecasting pipeline (RBF-SVR, time-ordered tuning, no look-ahead) that beat
             the historical-mean baseline in 18 of 18 settings, with 38% lower mean squared error on average.
@@ -153,42 +217,29 @@
             data perturbations.
             </p>
           </div>
-        </article>
+        </details>
       </section>
 
       <section id="publications" class="section-band compact-section">
-        <div class="section-heading">
+        <div class="section-heading reveal">
           <p class="eyebrow">Publications and Talks</p>
           <h2>Papers and presentations</h2>
         </div>
-        <div class="presentation-row">
-          <div class="presentation-card presentation-summary">
-            <h3>Manuscript</h3>
-            <p class="meta">Ready for submission</p>
+        <div class="pub-list">
+          <div class="pub reveal">
+            <p class="pub-kind">Manuscript &middot; Ready for submission</p>
+            <p><strong>Zhao, Y.</strong>, &amp; Tang, X. Scalar-on-Process Model for Educational Assessment:
+            Modeling Time-Varying Action Effects with Group LASSO Regularization.</p>
           </div>
-          <div class="presentation-card presentation-detail">
-            <p class="presentation">
-            <strong>Zhao, Y.</strong>, &amp; Tang, X. Scalar-on-Process Model for Educational Assessment:
-            Modeling Time-Varying Action Effects with Group LASSO Regularization.
-            </p>
-          </div>
-        </div>
-        <div class="presentation-row" style="margin-top: 16px;">
-          <div class="presentation-card presentation-summary">
-            <h3>Refereed Oral Presentation</h3>
-            <p class="meta">Symposium on Data Science and Statistics</p>
-          </div>
-          <div class="presentation-card presentation-detail">
-            <p class="presentation">
-            <strong>Scalar-on-Process Model for Educational Assessment.</strong>
-            Refereed oral presentation, Symposium on Data Science and Statistics,
-            Milwaukee, Wisconsin. April 30, 2026.
-            </p>
+          <div class="pub reveal">
+            <p class="pub-kind">Refereed oral presentation &middot; April 30, 2026</p>
+            <p><strong>Scalar-on-Process Model for Educational Assessment.</strong>
+            Symposium on Data Science and Statistics, Milwaukee, Wisconsin.</p>
           </div>
         </div>
       </section>
 
-      <section id="contact" class="contact">
+      <section id="contact" class="contact reveal">
         <div>
           <p class="eyebrow">Contact</p>
           <h2>Yulong Zhao</h2>
@@ -200,6 +251,8 @@
           <a href="assets/Yulong_Zhao_CV_2026.pdf">CV</a>
         </div>
       </section>
+      <p class="footer">&copy; 2026 Yulong Zhao</p>
     </main>
+    <script src="main.js" defer></script>
   </body>
 </html>
