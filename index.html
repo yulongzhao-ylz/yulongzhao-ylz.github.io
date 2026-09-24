@@ -41,7 +41,7 @@
             through interactive tasks. I build interpretable and deployable models for these data: which
             actions matter and when, how to flag users at risk in real time without too many false alarms,
             and what hidden traits and states drive behavior. I also work on time-series forecasting and
-            regime-shift detection for scientific data. Advised by Prof. Xueying Tang.
+            regime-shift detection for scientific data. Advised by Prof. Xueying Tang and Prof. Hao Helen Zhang.
           </p>
           <div class="actions" aria-label="Profile links">
             <a class="button primary" href="assets/Yulong_Zhao_CV_2026.pdf">CV</a>
@@ -113,12 +113,12 @@
             <p>Interpretable models that show which actions in a process matter for the outcome, and whether that depends on when they happen.</p>
           </div>
           <div class="reveal">
-            <h3>Latent Structure in Process Data</h3>
-            <p>Sparse latent-variable and hidden Markov models that recover the skills and problem-solving states behind observed actions.</p>
-          </div>
-          <div class="reveal">
             <h3>Real-Time Monitoring of Process Data</h3>
             <p>Risk scoring from partial action sequences as a task unfolds, with alert rules calibrated to a preset false-alarm budget.</p>
+          </div>
+          <div class="reveal">
+            <h3>Latent Structure in Process Data</h3>
+            <p>Sparse latent-variable and hidden Markov models that recover the skills and problem-solving states behind observed actions.</p>
           </div>
           <div class="reveal">
             <h3>Beyond Process Data: Scientific Time Series</h3>
@@ -136,20 +136,20 @@
         <details class="project reveal">
           <summary>
             <div class="project-top">
-              <h3>Predictive Modeling of Sequential User Behavior</h3>
+              <h3>Time-Varying Action Effects in User Behavior Sequences</h3>
             </div>
-            <p class="meta">Interpretable prediction &middot; time-varying effects &middot; NSF #2310664</p>
-            <p class="lede">Captures both which actions users take and when they take them.</p>
+            <p class="meta">Interpretable modeling &middot; time-varying effects &middot; NSF #2310664</p>
+            <p class="lede">Shows how each action's effect on success changes with when it happens.</p>
             <span class="more" aria-hidden="true">Details</span>
           </summary>
           <div class="project-body">
             <p>
-            Built an interpretable predictive model for timestamped user-event sequences that captures both which
-            actions users take and when they take them, including time-varying behavioral effects missed by
-            count-based features. Improved 10-fold cross-validated accuracy from 93.5% to 96.1% and cut log loss
-            by 50% (0.237 to 0.118) on 19,089 events from 2,668 users, outperforming the count-feature baseline on
-            every fold. Identified timing-sensitive behavioral signals whose predictive effect reverses across the
-            task, revealing information fundamentally lost by conventional aggregate features.
+            Developed an interpretable model that estimates how each action's effect on task success changes with
+            when it occurs, classifying every action as having no effect, a constant effect, or a time-varying
+            effect. Applied it to 19,089 events from 2,668 users in an educational problem-solving assessment
+            (OECD PISA 2012), revealing actions whose effect reverses over task time, a pattern masked by aggregate
+            action counts. The model also improved prediction over a count-feature logistic baseline: 50% lower log
+            loss (0.237 to 0.118) and accuracy from 93.5% to 96.1% in 10-fold cross-validation, winning every fold.
             <a href="#top">See the interactive curve at the top.</a>
             </p>
           </div>
@@ -158,28 +158,7 @@
         <details class="project reveal">
           <summary>
             <div class="project-top">
-              <h3>Unsupervised Skill and State Discovery from User Sequences</h3>
-            </div>
-            <p class="meta">Structured latent-variable models &middot; hidden Markov models &middot; sparse skill maps</p>
-            <p class="lede">Learns stable skills and evolving states, and which skill drives which behavior, with no labels.</p>
-            <span class="more" aria-hidden="true">Details</span>
-          </summary>
-          <div class="project-body">
-            <p>
-            Designed a structured latent-variable model that jointly learns stable user skills and evolving
-            behavioral states from multistep interaction sequences. Developed sparse skill-to-behavior mappings that
-            learn which latent skills drive actions, interface choices, and state transitions, instead of requiring
-            those relationships to be specified a priori. Applied the framework to 1,340 users in a multi-interface
-            problem-solving task, recovering interpretable skills, behavioral states, and skill&ndash;action
-            relationships without manual state labeling.
-            </p>
-          </div>
-        </details>
-
-        <details class="project reveal">
-          <summary>
-            <div class="project-top">
-              <h3>Real-Time Early Warning with a Controlled False-Alarm Rate</h3>
+              <h3>Early Failure Detection from Partial User Sequences</h3>
             </div>
             <p class="meta">Online risk scoring &middot; sequence models &middot; threshold calibration</p>
             <p class="lede">Flags users heading toward failure while they are still working, without crying wolf.</p>
@@ -187,12 +166,12 @@
           </summary>
           <div class="project-body">
             <p>
-            Built an online early-warning framework that continuously updates failure risk from partial
-            user-action sequences, enabling intervention before task completion. Designed and calibrated decision
-            thresholds to maximize early detection while explicitly controlling the false-alarm rate at &le;5%.
-            Benchmarked GRU, temporal CNN, Transformer, and leakage-safe logistic baselines; the best temporal CNN
-            detected 98.9% of failing users at precision &ge;0.98 while keeping false alarms below 4% across all
-            three tasks, compared with 85.6% detection for GRU.
+            Built an online early-warning framework that updates each user's failure risk after every action in
+            educational problem-solving tasks, enabling intervention before task completion. Calibrated alert
+            thresholds to target a user-level false-alarm rate of &le;5%. Benchmarked GRU, temporal CNN,
+            Transformer, and leakage-safe logistic baselines; the best temporal CNN detected 98.9% of failing users
+            on average across three tasks (97.6% on the hardest) at precision &ge;0.98, with false alarms at most
+            4% on every task, compared with 85.6% for GRU.
             </p>
           </div>
         </details>
@@ -200,19 +179,40 @@
         <details class="project reveal">
           <summary>
             <div class="project-top">
-              <h3>Multivariate Time-Series Forecasting &amp; Regime-Shift Detection</h3>
+              <h3>Learning Latent Skills and Behavioral States</h3>
             </div>
-            <p class="meta">Walk-forward forecasting &middot; recurrence-based detection &middot; IMSI cluster, NSF #1929348</p>
+            <p class="meta">Structured latent-variable models &middot; hidden Markov models &middot; sparse skill maps</p>
+            <p class="lede">Learns stable skills and evolving states, and how skills link to behavior, with no labels.</p>
+            <span class="more" aria-hidden="true">Details</span>
+          </summary>
+          <div class="project-body">
+            <p>
+            Developed a structured latent-variable model that jointly estimates persistent user skills and evolving
+            behavioral states from multistep interaction sequences. Learned sparse mappings linking latent skills to
+            actions, interface choices, and state transitions, without prespecified skill&ndash;behavior assignments
+            or manually labeled states. On 1,340 users of an email-and-spreadsheet task, it recovered interpretable
+            structure without labels: distinct skills for search, sort, and email actions, skills with opposing
+            effects on related actions, and state transitions consistent with the task logic.
+            </p>
+          </div>
+        </details>
+
+        <details class="project reveal">
+          <summary>
+            <div class="project-top">
+              <h3>Time-Series Forecasting &amp; Regime-Shift Detection</h3>
+            </div>
+            <p class="meta">Walk-forward forecasting &middot; recurrence plots &middot; IMSI cluster, NSF #1929348</p>
             <p class="lede">Forecasts biological change from environmental records and tests where regimes shift.</p>
             <span class="more" aria-hidden="true">Details</span>
           </summary>
           <div class="project-body">
             <p>
-            Built a leakage-free walk-forward forecasting pipeline using PCA and RBF-SVR, reducing MSE by 38%
-            versus the historical-mean baseline and outperforming it in all 18 evaluation settings. Developed a
-            multivariate regime-shift detection pipeline using recurrence-based features and multiple-testing
-            correction, identifying statistically significant environmental shifts and separating robust signals
-            from preprocessing-sensitive findings.
+            Built a PCA + RBF-SVR forecasting pipeline with leakage-free walk-forward evaluation, reducing MSE by 38%
+            on average versus a historical-mean baseline and outperforming it in all 18 settings (3 outcomes
+            &times; 3 fossil records &times; 2 preprocessing choices). Evaluated environmental regime shifts using
+            recurrence plots, multiple-testing correction, and preprocessing sensitivity analysis, distinguishing
+            robust findings from preprocessing-dependent results.
             </p>
           </div>
         </details>
