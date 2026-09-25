@@ -83,21 +83,21 @@
               and step in early without bothering the users who would have succeeded anyway?
             </p>
             <p>
-              The demo replays three users in the same ticket-machine task. At each step a sequence model scores
-              the risk of failing, and an alert fires only after two high-risk steps within any four, a rule
-              calibrated so that false alarms stay under 5%.
+              The demo replays four users in a ticket-machine task. After every action a sequence model scores the
+              risk of failing. The alert threshold is calibrated on successful users' peak risk, so that at most 10%
+              of them are ever alerted, and an alert only counts if it comes before the user submits.
             </p>
           </div>
           <figure class="live-panel reveal" aria-label="Animated demo of a real-time early-warning system">
             <div class="live-head">
               <span class="live-dot" aria-hidden="true"></span>
               <span class="live-title">Live early-warning demo</span>
-              <span class="live-budget">false-alarm budget &le; 5%</span>
+              <span class="live-budget">false-alarm budget 10%</span>
             </div>
             <div class="token-row" aria-hidden="true"></div>
             <canvas class="risk-canvas" aria-hidden="true"></canvas>
             <figcaption class="live-status" aria-live="polite">Watching the sequence&hellip;</figcaption>
-            <p class="live-note">Illustration based on the PISA ticket-machine task.</p>
+            <p class="live-note">Illustration based on the PISA ticket-machine task; risk values are schematic.</p>
           </figure>
         </div>
       </section>
@@ -158,20 +158,21 @@
         <details class="project reveal">
           <summary>
             <div class="project-top">
-              <h3>Early Failure Detection from Partial User Sequences</h3>
+              <h3>Early Failure Warning with Guaranteed False-Alarm Control</h3>
             </div>
-            <p class="meta">Online risk scoring &middot; sequence models &middot; threshold calibration</p>
-            <p class="lede">Flags users heading toward failure while they are still working, without crying wolf.</p>
+            <p class="meta">Online risk scoring &middot; calibrated alert rule &middot; sequence models</p>
+            <p class="lede">Warns before users submit, while keeping false alarms on successful users within budget.</p>
             <span class="more" aria-hidden="true">Details</span>
           </summary>
           <div class="project-body">
             <p>
-            Built an online early-warning framework that updates each user's failure risk after every action in
-            educational problem-solving tasks, enabling intervention before task completion. Calibrated alert
-            thresholds to target a user-level false-alarm rate of &le;5%. Benchmarked GRU, temporal CNN,
-            Transformer, and leakage-safe logistic baselines; the best temporal CNN detected 98.9% of failing users
-            on average across three tasks (97.6% on the hardest) at precision &ge;0.98, with false alarms at most
-            4% on every task, compared with 85.6% for GRU.
+            Built an online early-warning system that updates each user's risk of failing after every action and
+            raises an alert before the user submits, while there is still time to intervene. Designed a
+            model-agnostic alert rule calibrated on each user's peak risk over the whole sequence, with a
+            finite-sample guarantee that the share of successful users ever falsely alerted stays within a chosen
+            budget. On OECD PIAAC assessment data, adding users' behavior on earlier tasks more than doubled the
+            share of failing users caught at least 2 actions before submission, from 14% to 34% at a 10%
+            false-alarm budget, compared with a published early-window XGBoost baseline.
             </p>
           </div>
         </details>

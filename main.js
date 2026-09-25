@@ -82,26 +82,32 @@
 
   /* B: live early-warning demo */
 
-  var THRESHOLD = 0.6;
-  var WINDOW = 4;
-  var HITS = 2;
+  // The threshold stands for a cutoff calibrated on successful users' peak risk,
+  // so that at most the budgeted share of them is ever alerted. An alert only
+  // counts if it fires before the submit action (the last token).
+  var THRESHOLD = 0.62;
   var MAX_STEPS = 9;
 
   var scenarios = [
     {
       tokens: ["START", "city_subway", "concession", "daily", "Cancel", "city_subway", "concession", "daily", "Buy"],
-      risk: [0.38, 0.55, 0.66, 0.72, 0.58, 0.69, 0.77, 0.85, 0.9],
-      end: "Ended with the wrong ticket. The alert came 5 steps earlier."
+      risk: [0.35, 0.48, 0.58, 0.67, 0.6, 0.7, 0.78, 0.86, 0.92],
+      end: "Ended with the wrong ticket. The alert came {lead} actions before submission."
     },
     {
       tokens: ["START", "country_trains", "full_fare", "individual", "trip_2", "Buy"],
-      risk: [0.38, 0.3, 0.22, 0.16, 0.1, 0.05],
-      end: "Completed correctly. No alert, no interruption."
+      risk: [0.35, 0.3, 0.22, 0.16, 0.1, 0.05],
+      end: "Completed correctly. Risk stayed low, so there was no interruption."
     },
     {
       tokens: ["START", "country_trains", "concession", "Cancel", "country_trains", "full_fare", "individual", "trip_2", "Buy"],
-      risk: [0.38, 0.34, 0.64, 0.52, 0.4, 0.3, 0.2, 0.12, 0.06],
-      end: "One risky step is not enough. The 2-of-4 rule avoided a false alarm."
+      risk: [0.35, 0.33, 0.55, 0.5, 0.4, 0.3, 0.2, 0.12, 0.06],
+      end: "Risk rose after a wrong choice but stayed below the threshold: no false alarm for a user who recovered."
+    },
+    {
+      tokens: ["START", "country_trains", "full_fare", "daily", "Buy"],
+      risk: [0.35, 0.3, 0.34, 0.5, 0.9],
+      end: "Risk jumped only at submission. That is too late to help, so it does not count as a catch."
     }
   ];
 
@@ -110,15 +116,15 @@
     var canvas = panel.querySelector(".risk-canvas");
     var tokenRow = panel.querySelector(".token-row");
     var status = panel.querySelector(".live-status");
-    var state = { s: 0, shown: 0, progress: 1, alertAt: -1, done: false };
+    var state = { s: 0, shown: 0, progress: 1, alertAt: -1 };
     var timer = null;
 
-    function alertStep(risk, upto) {
-      for (var t = 0; t < upto; t++) {
-        var hits = 0;
-        for (var k = Math.max(0, t - WINDOW + 1); k <= t; k++) if (risk[k] > THRESHOLD) hits++;
-        if (hits >= HITS) return t;
-      }
+    function commitIndex(sc) { return sc.tokens.length - 1; }
+
+    // First step strictly before submission whose risk exceeds the threshold.
+    function alertStep(sc, upto) {
+      var c = commitIndex(sc);
+      for (var t = 0; t < Math.min(upto, c); t++) if (sc.risk[t] > THRESHOLD) return t;
       return -1;
     }
 
@@ -128,6 +134,7 @@
       var padL = 34, padR = 10, padT = 24, padB = 24;
       var pw = w - padL - padR, ph = h - padT - padB;
       var sc = scenarios[state.s];
+      var c = commitIndex(sc);
       function X(i) { return padL + (i / (MAX_STEPS - 1)) * pw; }
       function Y(v) { return padT + (1 - v) * ph; }
       var ink = cssVar("--ink"), muted = cssVar("--muted"), grid = cssVar("--grid");
@@ -146,7 +153,7 @@
       ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
       ctx.fillText("risk of failing", padL - 26, 11);
       ctx.textAlign = "right";
-      ctx.fillText("step →", w - padR, h - 6);
+      ctx.fillText("action →", w - padR, h - 6);
 
       ctx.setLineDash([5, 4]);
       ctx.strokeStyle = amber;
@@ -154,12 +161,24 @@
       ctx.setLineDash([]);
       ctx.fillStyle = amber;
       ctx.textAlign = "right";
-      ctx.fillText("threshold", w - padR, Y(THRESHOLD) - 6);
+      ctx.fillText("calibrated threshold", w - padR, Y(THRESHOLD) - 6);
+
+      // Submission marker: monitoring stops here.
+      if (state.shown > c) {
+        var sx = X(c);
+        ctx.fillStyle = grid;
+        ctx.fillRect(sx, padT, w - padR - sx, ph);
+        ctx.setLineDash([3, 3]);
+        ctx.strokeStyle = muted;
+        ctx.beginPath(); ctx.moveTo(sx, padT); ctx.lineTo(sx, padT + ph); ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = muted;
+        ctx.textAlign = sx > w - 70 ? "right" : "left";
+        ctx.fillText("submit", sx + (sx > w - 70 ? -5 : 5), sx > w - 70 ? padT + ph * 0.62 : padT + 12);
+      }
 
       if (state.alertAt >= 0 && state.alertAt < state.shown) {
         var ax = X(state.alertAt);
-        ctx.fillStyle = cssVar("--alert-soft");
-        ctx.fillRect(ax, padT, w - padR - ax, ph);
         ctx.strokeStyle = alert;
         ctx.lineWidth = 1.5;
         ctx.beginPath(); ctx.moveTo(ax, padT); ctx.lineTo(ax, padT + ph); ctx.stroke();
@@ -168,6 +187,15 @@
         ctx.font = "700 11px Inter, Segoe UI, Arial, sans-serif";
         ctx.fillText("ALERT", ax + 5, padT + 13);
         ctx.font = "11px Inter, Segoe UI, Arial, sans-serif";
+        if (state.shown > c) {
+          var cx = X(c);
+          var yb = padT + ph - 14;
+          ctx.strokeStyle = alert;
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(ax + 2, yb); ctx.lineTo(cx - 2, yb); ctx.stroke();
+          ctx.textAlign = "center";
+          ctx.fillText((c - state.alertAt) + " actions early", (ax + cx) / 2, yb - 4);
+        }
       }
 
       var n = state.shown;
@@ -215,6 +243,11 @@
       status.className = "live-status" + (cls ? " " + cls : "");
     }
 
+    function endText(sc) {
+      var a = alertStep(sc, sc.tokens.length);
+      return sc.end.replace("{lead}", a >= 0 ? String(commitIndex(sc) - a) : "");
+    }
+
     function animateSegment(done) {
       var start = null;
       function frame(ts) {
@@ -230,22 +263,24 @@
     function step() {
       var sc = scenarios[state.s];
       if (state.shown >= sc.tokens.length) {
-        var fired = state.alertAt >= 0;
-        setStatus(sc.end, fired ? "alert" : "ok");
-        timer = setTimeout(nextScenario, 3200);
+        setStatus(endText(sc), state.alertAt >= 0 ? "alert" : (sc.risk[commitIndex(sc)] > THRESHOLD ? "" : "ok"));
+        timer = setTimeout(nextScenario, 3600);
         return;
       }
       addToken(state.shown);
       state.shown += 1;
       state.progress = 0;
-      var a = alertStep(sc.risk, state.shown);
+      var a = alertStep(sc, state.shown);
       animateSegment(function () {
+        var i = state.shown - 1;
         if (a >= 0 && state.alertAt < 0) {
           state.alertAt = a;
           draw();
-          setStatus("⚠ Alert at step " + (a + 1) + ": offer a hint while the user can still recover.", "alert");
+          setStatus("⚠ Alert before submission: offer a hint while the user can still change course.", "alert");
         } else if (state.alertAt < 0) {
-          setStatus("Step " + state.shown + ": risk " + sc.risk[state.shown - 1].toFixed(2) + (sc.risk[state.shown - 1] > THRESHOLD ? " (above threshold)" : ""), "");
+          var isSubmit = i === commitIndex(sc);
+          setStatus(isSubmit ? "Submitted." :
+            "Action " + (i + 1) + ": risk " + sc.risk[i].toFixed(2), "");
         }
         timer = setTimeout(step, 700);
       });
@@ -272,11 +307,11 @@
       state.s = 0;
       state.shown = sc.tokens.length;
       state.progress = 1;
-      state.alertAt = alertStep(sc.risk, sc.tokens.length);
+      state.alertAt = alertStep(sc, sc.tokens.length);
       tokenRow.innerHTML = "";
       for (var i = 0; i < sc.tokens.length; i++) addToken(i);
       draw();
-      setStatus("⚠ Alert at step " + (state.alertAt + 1) + ". " + sc.end, "alert");
+      setStatus(endText(sc), "alert");
     }
 
     if (reduceMotion) renderStatic();
