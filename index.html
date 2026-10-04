@@ -166,8 +166,8 @@
           </summary>
           <div class="project-body">
             <p>
-            Built an online early-warning system that updates each user's risk of failing after every action and
-            raises an alert before the user submits, while there is still time to intervene. Designed a
+            Built an online early-warning system: a GRU risk model updates each user's risk of failing after every
+            action and raises an alert before the user submits, while there is still time to intervene. Designed a
             model-agnostic alert rule calibrated on each user's peak risk over the whole sequence, with a
             finite-sample guarantee that the share of successful users ever falsely alerted stays within a chosen
             budget. On OECD PIAAC assessment data, adding users' behavior on earlier tasks more than doubled the
@@ -189,9 +189,8 @@
           <div class="project-body">
             <p>
             Developed a structured latent-variable model that jointly estimates persistent user skills and evolving
-            behavioral states from multistep interaction sequences. Learned sparse mappings linking latent skills to
-            actions, interface choices, and state transitions, without prespecified skill&ndash;behavior assignments
-            or manually labeled states. On 1,340 users of an email-and-spreadsheet task, it recovered interpretable
+            behavioral states from interaction sequences, learning sparse skill-to-action mappings without
+            prespecified assignments or labeled states. On 1,340 users of an email-and-spreadsheet task, it recovered interpretable
             structure without labels: distinct skills for search, sort, and email actions, skills with opposing
             effects on related actions, and state transitions consistent with the task logic.
             </p>
@@ -209,9 +208,9 @@
           </summary>
           <div class="project-body">
             <p>
-            Built a PCA + RBF-SVR forecasting pipeline with leakage-free walk-forward evaluation, reducing MSE by 38%
-            on average versus a historical-mean baseline and outperforming it in all 18 settings (3 outcomes
-            &times; 3 fossil records &times; 2 preprocessing choices). Evaluated environmental regime shifts using
+            Built a PCA + RBF-SVR pipeline forecasting biological change from paleo-environmental records, with
+            leakage-free walk-forward evaluation; reduced MSE by 38% on average versus a historical-mean baseline
+            and beat it in all 18 settings. Evaluated environmental regime shifts using
             recurrence plots, multiple-testing correction, and preprocessing sensitivity analysis, distinguishing
             robust findings from preprocessing-dependent results.
             </p>
