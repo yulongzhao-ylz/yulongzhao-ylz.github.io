@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Yulong Zhao</title>
-    <meta name="description" content="Yulong Zhao, Statistics PhD student at the University of Arizona. Statistical methods for process data: time-varying action effects, real-time risk scoring, and latent-state models, plus time-series forecasting.">
+    <meta name="description" content="Yulong Zhao, Statistics PhD candidate at the University of Arizona. Statistical methods for process data: time-varying action effects, real-time risk scoring, and latent-state models, plus time-series forecasting.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://yulongzhao-ylz.github.io/">
     <meta property="og:title" content="Yulong Zhao | Statistics PhD Candidate, University of Arizona">
@@ -56,6 +56,7 @@
             <a class="button primary" href="assets/Yulong_Zhao_CV_2026.pdf">CV</a>
             <a class="button" href="mailto:ylzhao@arizona.edu">Email</a>
             <a class="button" href="https://www.linkedin.com/in/yulong-zhao-21a35b23b/">LinkedIn</a>
+            <a class="button" href="https://github.com/KiriAsuna">GitHub</a>
           </div>
           <ul class="facts" aria-label="Profile facts">
             <li><span>Focus</span>Process data</li>
@@ -153,12 +154,12 @@
           </summary>
           <div class="project-body">
             <p>
-            Developed an interpretable model that estimates how each action's effect on task success changes with
-            when it occurs, classifying every action as having no effect, a constant effect, or a time-varying
-            effect. Applied it to 19,089 events from 2,668 users in an educational problem-solving assessment
-            (OECD PISA 2012), revealing actions whose effect reverses over task time, a pattern masked by aggregate
-            action counts. The model also improved prediction over a count-feature logistic baseline: 50% lower log
-            loss (0.237 to 0.118) and accuracy from 93.5% to 96.1% in 10-fold cross-validation, winning every fold.
+            Revealed actions whose effect on task success reverses over task time, a pattern masked by aggregate
+            action counts, in 19,089 events from 2,668 users of an educational problem-solving assessment
+            (OECD PISA 2012). Developed the interpretable model behind it, which estimates how each action's effect
+            changes with when it occurs and classifies every action as having no effect, a constant effect, or a
+            time-varying effect. The model also improved prediction over a count-feature logistic baseline: 50% lower
+            log loss (0.237 to 0.118) and accuracy from 93.5% to 96.1% in 10-fold cross-validation, winning every fold.
             <a href="#top">See the interactive curve at the top.</a>
             </p>
           </div>
@@ -175,13 +176,13 @@
           </summary>
           <div class="project-body">
             <p>
-            Built an online early-warning system: a GRU risk model updates each user's risk of failing after every
-            action and raises an alert before the user submits, while there is still time to intervene. Designed a
-            model-agnostic alert rule calibrated on each user's peak risk over the whole sequence, with a
-            finite-sample guarantee that the share of successful users ever falsely alerted stays within a chosen
-            budget. On OECD PIAAC assessment data, adding users' behavior on earlier tasks more than doubled the
-            share of failing users caught at least 2 actions before submission, from 14% to 34% at a 10%
-            false-alarm budget, compared with a published early-window XGBoost baseline.
+            More than doubled the share of failing users caught at least 2 actions before submission, from 14% to
+            34% at a 10% false-alarm budget, compared with a published early-window XGBoost baseline, on OECD PIAAC
+            assessment data, by adding users' behavior on earlier tasks. Built the online early-warning system behind
+            it: a neural sequence model (GRU) updates each user's risk of failing after every action and raises an
+            alert before the user submits, while there is still time to intervene. Designed a model-agnostic alert
+            rule calibrated on each user's peak risk over the whole sequence, with a provable guarantee that the
+            share of successful users ever falsely alerted stays within a chosen budget.
             </p>
           </div>
         </details>
@@ -197,11 +198,13 @@
           </summary>
           <div class="project-body">
             <p>
-            Developed a structured latent-variable model that jointly estimates persistent user skills and evolving
-            behavioral states from interaction sequences, learning sparse skill-to-action mappings without
-            prespecified assignments or labeled states. On 1,340 users of an email-and-spreadsheet task, it recovered interpretable
-            structure without labels: distinct skills for search, sort, and email actions, skills with opposing
-            effects on related actions, and state transitions consistent with the task logic.
+            Recovered interpretable structure without labels on 1,129 users of an email-and-spreadsheet task:
+            3 skills and 2 behavioral states learned from 48 action types, with distinct skills for search, sort,
+            and email actions, skills with opposing effects on related actions, and state transitions consistent
+            with the task logic. All 14 learned skill-to-action links reappeared in at least 94% of bootstrap
+            resamples. Developed the structured latent-variable model behind it, which jointly estimates persistent
+            user skills and evolving behavioral states from interaction sequences, learning sparse skill-to-action
+            mappings without prespecified assignments or labeled states.
             </p>
           </div>
         </details>
@@ -217,11 +220,11 @@
           </summary>
           <div class="project-body">
             <p>
-            Built a PCA + RBF-SVR pipeline forecasting biological change from paleo-environmental records, with
-            leakage-free walk-forward evaluation; reduced MSE by 38% on average versus a historical-mean baseline
-            and beat it in all 18 settings. Evaluated environmental regime shifts using
-            recurrence plots, multiple-testing correction, and preprocessing sensitivity analysis, distinguishing
-            robust findings from preprocessing-dependent results.
+            Reduced forecast MSE by 38% on average versus a historical-mean baseline, beating it in all 18 settings,
+            with a nonlinear regression pipeline (PCA + kernel SVR) forecasting biological change from
+            paleo-environmental records, evaluated strictly out-of-sample (walk-forward). Evaluated environmental
+            regime shifts using recurrence plots, multiple-testing correction, and preprocessing sensitivity
+            analysis, distinguishing robust findings from preprocessing-dependent results.
             </p>
           </div>
         </details>
@@ -250,11 +253,12 @@
         <div>
           <p class="eyebrow">Contact</p>
           <h2>Yulong Zhao</h2>
-          <p>PhD student in Statistics at the University of Arizona.</p>
+          <p>PhD candidate in Statistics at the University of Arizona.</p>
         </div>
         <div class="contact-links">
           <a href="mailto:ylzhao@arizona.edu">ylzhao@arizona.edu</a>
           <a href="https://www.linkedin.com/in/yulong-zhao-21a35b23b/">LinkedIn</a>
+          <a href="https://github.com/KiriAsuna">GitHub</a>
           <a href="assets/Yulong_Zhao_CV_2026.pdf">CV</a>
         </div>
       </section>
